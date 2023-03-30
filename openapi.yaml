@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: Gym Coach Selection Plugin
+  description: Plugin for selecting gym coach personality based on your personality and goal to achieve better results. If you do not know the user's username, ask them first before making queries to the plugin. Otherwise, use the username "global".
+  version: 'v1'
+servers:
+  # product: https://<YOUR_REPO>.<YOUR_OWNER>.repl.co
+  - url: http://localhost:3001
+paths:
+  /coaches/{username}:
+    get:
+      operationId: getCoach
+      summary: Get the coach for the user
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCoachesResponse'
+    post:
+      operationId: addUser
+      summary: Add user to the list
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addUsername'
+      responses:
+        "200":
+          description: OK
+    delete:
+      operationId: delete user from the list
+      summary: Delete user from the list
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteUserRequest'
+      responses:
+        "200":
+          description: OK
+
+components:
+  schemas:
+    getCoachesResponse:
+      type: object
+      properties:
+        coaches:
+          type: array
+          items:
+            type: string
+          description: The list of coaches available.
+    addUserRequest:
+      type: object
+      required:
+      - username
+      properties:
+        todo:
+          type: string
+          description: The username add to the list.
+          required: true
+    deleteUserRequest:
+      type: object
+      required:
+      - username
+      properties:
+        todo_idx:
+          type: string
+          description: The username to delete from list.
+          required: true

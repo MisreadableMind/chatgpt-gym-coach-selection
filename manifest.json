@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "GYM Coach selection Plugin (service http)",
+  "name_for_model": "gym_coach_selection_plugin",
+  "description_for_human": "Plugin for selecting gym coach personality based on your personality and goal to achieve better results.",
+  "description_for_model": "Plugin for selecting gym coach personality based on user personality and goal to achieve better results. We use OCEAN model study underneath to cover and match up personalities.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:3001/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://localhost:3001/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "http://www.example.com/legal"
+}
